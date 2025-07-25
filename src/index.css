@@ -2,41 +2,69 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Street Food Ecosystem Hub Design System - All colors MUST be HSL */
 
 @layer base {
   :root {
+    /* Base colors */
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --foreground: 220 8.9% 12.6%;
 
+    /* Card colors */
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 220 8.9% 12.6%;
 
+    /* Popover colors */
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 220 8.9% 12.6%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Street food brand colors */
+    --primary: 24 95% 53%; /* Vibrant orange for street food */
+    --primary-foreground: 0 0% 98%;
+    --primary-glow: 32 100% 65%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Sustainability green */
+    --secondary: 142 76% 36%; /* Fresh green */
+    --secondary-foreground: 0 0% 98%;
+    --secondary-glow: 142 85% 50%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Hygiene trust blue */
+    --trust: 217 91% 60%; /* Trust blue */
+    --trust-foreground: 0 0% 98%;
+    --trust-glow: 217 100% 75%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Neutral colors */
+    --muted: 220 14.3% 95.9%;
+    --muted-foreground: 220 8.5% 46.1%;
+
+    --accent: 220 14.3% 95.9%;
+    --accent-foreground: 220 8.9% 12.6%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 24 95% 53%;
 
-    --radius: 0.5rem;
+    /* Design system tokens */
+    --radius: 0.75rem;
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
+    --gradient-secondary: linear-gradient(135deg, hsl(var(--secondary)), hsl(var(--secondary-glow)));
+    --gradient-trust: linear-gradient(135deg, hsl(var(--trust)), hsl(var(--trust-glow)));
+    --gradient-hero: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--secondary)) 50%, hsl(var(--trust)) 100%);
+    
+    /* Shadows */
+    --shadow-soft: 0 2px 8px -2px hsl(var(--primary) / 0.1);
+    --shadow-medium: 0 8px 16px -4px hsl(var(--primary) / 0.15);
+    --shadow-strong: 0 16px 32px -8px hsl(var(--primary) / 0.2);
+    --shadow-glow: 0 0 32px hsl(var(--primary-glow) / 0.3);
+    
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
     --sidebar-background: 0 0% 98%;
 
