@@ -1,9 +1,32 @@
 import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, X, MapPin, Star, Leaf } from "lucide-react";
+import { useAuth } from "@/hooks/useAuth";
+import { useToast } from "@/hooks/use-toast";
+import { Menu, X, MapPin, Star, Leaf, LogOut } from "lucide-react";
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { user, signOut } = useAuth();
+  const { toast } = useToast();
+  const navigate = useNavigate();
+
+  const handleSignOut = async () => {
+    const { error } = await signOut();
+    if (error) {
+      toast({
+        title: "Error",
+        description: "Failed to sign out. Please try again.",
+        variant: "destructive",
+      });
+    } else {
+      toast({
+        title: "Signed out",
+        description: "You have been successfully signed out.",
+      });
+      navigate('/');
+    }
+  };
 
   const navItems = [
     { label: "Discover", href: "#discover", icon: MapPin },
@@ -43,8 +66,30 @@ const Navigation = () => {
 
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center space-x-4">
-            <Button variant="ghost">Sign In</Button>
-            <Button variant="hero">Get Started</Button>
+            {user ? (
+              <>
+                <span className="text-sm text-muted-foreground">
+                  Welcome back!
+                </span>
+                <Button 
+                  variant="ghost" 
+                  onClick={handleSignOut}
+                  className="flex items-center gap-2"
+                >
+                  <LogOut className="h-4 w-4" />
+                  Sign Out
+                </Button>
+              </>
+            ) : (
+              <>
+                <Link to="/signin">
+                  <Button variant="ghost">Sign In</Button>
+                </Link>
+                <Link to="/register">
+                  <Button variant="hero">Get Started</Button>
+                </Link>
+              </>
+            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -78,8 +123,34 @@ const Navigation = () => {
                 );
               })}
               <div className="flex flex-col space-y-2 pt-4 border-t border-border">
-                <Button variant="ghost" className="justify-start">Sign In</Button>
-                <Button variant="hero" className="justify-start">Get Started</Button>
+                {user ? (
+                  <>
+                    <div className="text-sm text-muted-foreground py-2">
+                      Welcome back!
+                    </div>
+                    <Button 
+                      variant="ghost" 
+                      className="justify-start flex items-center gap-2"
+                      onClick={handleSignOut}
+                    >
+                      <LogOut className="h-4 w-4" />
+                      Sign Out
+                    </Button>
+                  </>
+                ) : (
+                  <>
+                    <Link to="/signin">
+                      <Button variant="ghost" className="justify-start w-full">
+                        Sign In
+                      </Button>
+                    </Link>
+                    <Link to="/register">
+                      <Button variant="hero" className="justify-start w-full">
+                        Get Started
+                      </Button>
+                    </Link>
+                  </>
+                )}
               </div>
             </div>
           </div>
